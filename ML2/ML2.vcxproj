@@ -115,6 +115,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Cell.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="ModelInputCell.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Cell.hpp" />
+    <ClInclude Include="ModelInputCell.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
