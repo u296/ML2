@@ -24,12 +24,18 @@
     <ClCompile Include="ModelInputCell.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="HiddenCell.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cell.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ModelInputCell.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HiddenCell.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

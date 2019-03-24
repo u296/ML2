@@ -5,7 +5,7 @@
 class ModelInputCell : public Cell
 {
 public:
-	ModelInputCell(double * inputVariable);
+	ModelInputCell(double(*GroupingFunction)(std::vector<double>), double(*ActivationFunction)(double), double * inputVariable);
 	~ModelInputCell();
 
 	double GetValue() override;

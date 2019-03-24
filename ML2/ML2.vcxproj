@@ -116,11 +116,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Cell.cpp" />
+    <ClCompile Include="HiddenCell.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ModelInputCell.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cell.hpp" />
+    <ClInclude Include="HiddenCell.hpp" />
     <ClInclude Include="ModelInputCell.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
