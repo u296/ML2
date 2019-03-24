@@ -11,8 +11,5 @@ ML2::Cells::OutputCell::OutputCell(std::vector<Cell*> inputCells, std::vector<do
 
 ML2::Cells::OutputCell::~OutputCell()
 {
-	for (int i = 0; i < m_inputCells.size(); i++)
-	{
-		delete m_inputCells[i];
-	}
+
 }

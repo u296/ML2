@@ -120,15 +120,18 @@
     <ClCompile Include="GroupingFunctions.cpp" />
     <ClCompile Include="HiddenCell.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Model.cpp" />
     <ClCompile Include="ModelInputCell.cpp" />
     <ClCompile Include="OutputCell.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ActivationFunctions.h" />
     <ClInclude Include="Cell.h" />
+    <ClInclude Include="Enums.h" />
     <ClInclude Include="GroupingFunctions.h" />
     <ClInclude Include="HiddenCell.h" />
     <ClInclude Include="ML2.h" />
+    <ClInclude Include="Model.h" />
     <ClInclude Include="ModelInputCell.h" />
     <ClInclude Include="OutputCell.h" />
   </ItemGroup>

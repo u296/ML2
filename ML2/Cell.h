@@ -7,8 +7,11 @@ namespace ML2
 		class Cell
 		{
 		public:
-			virtual double GetValue();
 			~Cell();
+
+			virtual double GetValue();
+			virtual std::vector<double> & GetInputWeights();
+			virtual double & GetOutputWeight();
 		protected:
 			std::vector<Cell *> m_inputCells;
 			std::vector<double> m_inputWeights;

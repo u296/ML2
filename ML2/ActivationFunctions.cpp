@@ -21,5 +21,5 @@ double ML2::ActivationFunctions::Sigmoid(double x)
 
 double ML2::ActivationFunctions::SoftSign(double x)
 {
-	return x / (1 + abs(x));
+	return x / (1 + fabs(x));
 }
