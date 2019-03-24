@@ -1,10 +1,18 @@
-#include "Cell.hpp"
+#include "Cell.h"
 
-double Cell::GetValue()
+double ML2::Cells::Cell::GetValue()
 {
 	std::vector<double> InputValues;
-	for (const auto & InputCell : m_inputCells)
-		InputValues.push_back(InputCell->GetValue());
+	for (int i = 0; i < m_inputCells.size(); i++)
+		InputValues.push_back(m_inputCells[i]->GetValue() * m_inputWeights[i]);
 
-	return m_ActivationFunction(m_GroupingFunction(InputValues));
+	return m_ActivationFunction(m_GroupingFunction(InputValues)) * m_outputWeight;
+}
+
+ML2::Cells::Cell::~Cell()
+{
+	for (int i = 0; i < m_inputCells.size(); i++)
+	{
+		delete m_inputCells[i];
+	}
 }

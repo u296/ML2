@@ -27,15 +27,36 @@
     <ClCompile Include="HiddenCell.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="OutputCell.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GroupingFunctions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ActivationFunctions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Cell.hpp">
+    <ClInclude Include="HiddenCell.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ModelInputCell.hpp">
+    <ClInclude Include="Cell.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="HiddenCell.hpp">
+    <ClInclude Include="ModelInputCell.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ML2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GroupingFunctions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OutputCell.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ActivationFunctions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
