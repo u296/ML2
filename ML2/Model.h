@@ -9,18 +9,16 @@ namespace ML2
 	class Model
 	{
 	public:
-	private:
-		Model();
-		Model();
+		Model(std::vector<double *> inputVariables, std::vector<int> modelShape, std::vector<double(*)(std::vector<double>)> groupingFunctions, std::vector<double(*)(double)> activationFunctions);
+		virtual ~Model();
+		
+		ML2::Cells::Cell operator[](int index) const;	// getter
+		ML2::Cells::Cell & operator[](int index);		// setter
+
+		virtual std::vector<double> Evaluate();
 	protected:
-		void CreateModel(
-			std::vector<int> modelSize,													// 2d map of model
-			std::vector<std::vector<std::vector<double>>> inputWeights,					// inputweights for every cell
-			std::vector<std::vector<double>> outputWeights,								// outputweight for every cell
-			std::vector<std::vector<double(*)(std::vector<double>)>> groupingFunctions,	// grouping function for every cell
-			std::vector<std::vector<double(*)(double)>> activationFunctions				// activation function for every cell
-		);
-
-
+		std::vector<ML2::Cells::Cell *> m_inputLayer;
+		std::vector<std::vector<ML2::Cells::Cell *>> m_hiddenLayers;
+		std::vector<ML2::Cells::Cell *> m_outputLayer;
 	};
 }

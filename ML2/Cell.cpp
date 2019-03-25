@@ -1,25 +1,34 @@
 #include "Cell.h"
 
-double ML2::Cells::Cell::GetValue()
+namespace ML2
 {
-	std::vector<double> InputValues;
-	for (int i = 0; i < m_inputCells.size(); i++)
-		InputValues.push_back(m_inputCells[i]->GetValue() * m_inputWeights[i]);
+	namespace Cells
+	{
+		double Cell::GetValue()
+		{
+			std::vector<double> InputValues;
 
-	return m_ActivationFunction(m_GroupingFunction(InputValues)) * m_outputWeight;
-}
+			InputValues.reserve(m_inputCells.size());
 
-std::vector<double> & ML2::Cells::Cell::GetInputWeights()
-{
-	return m_inputWeights;
-}
+			for (int i = 0; i < m_inputCells.size(); i++)
+				InputValues.emplace_back(m_inputCells[i]->GetValue() * m_inputWeights[i]);
 
-double & ML2::Cells::Cell::GetOutputWeight()
-{
-	return m_outputWeight;
-}
+			return m_ActivationFunction(m_GroupingFunction(InputValues)) * m_outputWeight;
+		}
 
-ML2::Cells::Cell::~Cell()
-{
-	
+		std::vector<double> & Cell::GetInputWeights()
+		{
+			return m_inputWeights;
+		}
+
+		double & Cell::GetOutputWeight()
+		{
+			return m_outputWeight;
+		}
+
+		Cell::~Cell()
+		{
+
+		}
+	}
 }

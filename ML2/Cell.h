@@ -7,7 +7,7 @@ namespace ML2
 		class Cell
 		{
 		public:
-			~Cell();
+			virtual ~Cell();
 
 			virtual double GetValue();
 			virtual std::vector<double> & GetInputWeights();
