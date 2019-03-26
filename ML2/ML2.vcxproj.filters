@@ -39,6 +39,9 @@
     <ClCompile Include="Model.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Trainer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HiddenCell.h">
@@ -65,7 +68,7 @@
     <ClInclude Include="Model.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Enums.h">
+    <ClInclude Include="Trainer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
