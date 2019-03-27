@@ -5,11 +5,10 @@ namespace ML2
 {
 	namespace Cells
 	{
-		class OutputCell : public ML2::Cells::Cell
+		class OutputCell : public ML2::Bases::Cell
 		{
 		public:
-			OutputCell(std::vector<Cell *> inputCells, std::vector<double> inputWeights, double outputWeight, double(*GroupingFunction)(std::vector<double>), double(*ActivationFunction)(double));
-			~OutputCell();
+			OutputCell(std::vector<ML2::Bases::Cell *> inputCells, std::vector<double> inputWeights, double(*ActivationFunction)(double));
 		};
 	}
 }

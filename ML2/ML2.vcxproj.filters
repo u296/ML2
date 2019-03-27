@@ -21,9 +21,6 @@
     <ClCompile Include="Cell.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ModelInputCell.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="HiddenCell.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -42,15 +39,21 @@
     <ClCompile Include="Trainer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="FeedForwardModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BackpropagationTrainer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InputCell.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HiddenCell.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Cell.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ModelInputCell.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ML2.h">
@@ -69,6 +72,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Trainer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FeedForwardModel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BackpropagationTrainer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InputCell.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

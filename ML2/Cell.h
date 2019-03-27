@@ -2,23 +2,20 @@
 #include <vector>
 namespace ML2
 {
-	namespace Cells
+	namespace Bases
 	{
 		class Cell
 		{
 		public:
+			Cell();
 			virtual ~Cell();
 
 			virtual double GetValue();
-			virtual std::vector<double> & GetInputWeights();
-			virtual double & GetOutputWeight();
+			virtual double & operator[](const int index);
 		protected:
 			std::vector<Cell *> m_inputCells;
-			std::vector<double> m_inputWeights;
-
-			double(*m_GroupingFunction)(std::vector<double>);
+			std::vector<double> m_weights;
 			double(*m_ActivationFunction)(double);
-			double m_outputWeight;
 		};
 	}
 }

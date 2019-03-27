@@ -5,10 +5,10 @@ namespace ML2
 {
 	namespace Cells
 	{
-		class HiddenCell : public ML2::Cells::Cell
+		class HiddenCell : public ML2::Bases::Cell
 		{
 		public:
-			HiddenCell(std::vector<Cell *> inputCells, std::vector<double> inputWeights, double outputWeight, double(*GroupingFunction)(std::vector<double>), double(*ActivationFunction)(double));
+			HiddenCell(std::vector<ML2::Bases::Cell *> inputCells, std::vector<double> weights, double(*ActivationFunction)(double));
 		};
 	}
 }

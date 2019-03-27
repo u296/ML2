@@ -4,20 +4,23 @@
 
 namespace ML2
 {
-	class Trainer
+	namespace Bases
 	{
-	public:
-		Trainer(Model * model = nullptr);
-		virtual ~Trainer();
+		class Trainer
+		{
+		public:
+			Trainer(Model * model = nullptr);
+			virtual ~Trainer();
 
-		virtual void Attach(Model * model);
-		virtual void Run();
-	protected:
-		Model * m_model;
+			virtual void Attach(Model * model);
+			virtual void Run();
+		protected:
+			Model * m_model;
 
-		std::vector<double> * m_trainingData;
-		std::vector<double> * m_trainingLabels;
-		std::vector<double> * m_testingData;
-		std::vector<double> * m_testingLabels;
-	};
+			std::vector<std::vector<double>> *	m_trainingData;
+			std::vector<double> *				m_trainingAnwsers;
+			std::vector<std::vector<double>> *	m_testingData;
+			std::vector<double> *				m_testingAnwsers;
+		};
+	}
 }

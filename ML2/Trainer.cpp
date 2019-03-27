@@ -1,19 +1,25 @@
 #include "Trainer.h"
 
-ML2::Trainer::Trainer(Model * model)
+namespace ML2
 {
-	Attach(model);
-}
+	namespace Bases
+	{
+		Trainer::Trainer(Model * model)
+		{
+			Attach(model);
+		}
 
-ML2::Trainer::~Trainer()
-{
-}
+		Trainer::~Trainer()
+		{
+		}
 
-void ML2::Trainer::Attach(Model * model)
-{
-	m_model = model;
-}
+		void Trainer::Attach(Model * model)
+		{
+			m_model = model;
+		}
 
-void ML2::Trainer::Run()
-{
+		void Trainer::Run()
+		{
+		}
+	}
 }

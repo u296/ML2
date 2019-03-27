@@ -12,16 +12,16 @@ int main()
 	double in4 = -333;
 	double in5 = 21;
 
-	ML2::Model * model = new ML2::Model(
+	ML2::Models::FeedForwardModel * model = new ML2::Models::FeedForwardModel(
 		{ &in1, &in2, &in3, &in4, &in5 },
-		{ 5,35,5,2 },
-		{ ML2::GroupingFunctions::Average, ML2::GroupingFunctions::Average, ML2::GroupingFunctions::Average, ML2::GroupingFunctions::Average, ML2::GroupingFunctions::Average },
+		{ 1,5,5,4 },
 		{ ML2::ActivationFunctions::SoftSign,ML2::ActivationFunctions::SoftSign,ML2::ActivationFunctions::SoftSign,ML2::ActivationFunctions::SoftSign,ML2::ActivationFunctions::SoftSign }
 	);
 
 	std::vector<double> t = model->Evaluate();
 	
-	std::cout << t[0] << std::endl;
+	for (int i = 0; i < t.size(); i++)
+		std::cout << t[i] << std::endl;
 
 	delete model;
 

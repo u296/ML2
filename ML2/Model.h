@@ -6,21 +6,23 @@
 
 namespace ML2
 {
-	class Model
+	namespace Bases
 	{
-	public:
-		Model(std::vector<double *> inputVariables, std::vector<int> modelShape, std::vector<double(*)(std::vector<double>)> groupingFunctions, std::vector<double(*)(double)> activationFunctions);
-		virtual ~Model();
-		
-		ML2::Cells::Cell operator[](int index) const;	// getter
-		ML2::Cells::Cell & operator[](int index);		// setter
+		class Model
+		{
+		public:
+			Model();
+			virtual ~Model();
 
-		virtual std::vector<double> Evaluate();
-	protected:
-		std::vector<ML2::Cells::Cell *> m_inputLayer;
-		std::vector<std::vector<ML2::Cells::Cell *>> m_hiddenLayers;
-		std::vector<ML2::Cells::Cell *> m_outputLayer;
+			virtual std::vector<double> Evaluate();
+		protected:
+			friend class Trainer;
 
-		virtual void Initialize(std::vector<double *> inputVariables, std::vector<int> modelShape, std::vector<double(*)(std::vector<double>)> groupingFunctions, std::vector<double(*)(double)> activationFunctions);
-	};
+			std::vector<ML2::Bases::Cell *> m_inputLayer;
+			std::vector<std::vector<ML2::Bases::Cell *>> m_hiddenLayers;
+			std::vector<ML2::Bases::Cell *> m_outputLayer;
+
+			virtual void Initialize(std::vector<double *> inputVariables, std::vector<int> modelShape, std::vector<double(*)(double)> activationFunctions);
+		};
+	}
 }
