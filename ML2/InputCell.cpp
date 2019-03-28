@@ -6,8 +6,9 @@ namespace ML2
 	namespace Cells
 	{
 		InputCell::InputCell(double * inputVariable)
+			: m_inputVariable(inputVariable)
 		{
-			m_inputVariable = inputVariable;
+			
 		}
 
 		InputCell::~InputCell()
