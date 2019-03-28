@@ -7,6 +7,4 @@
 #include "Model.h"
 #include "FeedForwardModel.h"
 #include "Trainer.h"
-
-#include "GroupingFunctions.h"
 #include "ActivationFunctions.h"

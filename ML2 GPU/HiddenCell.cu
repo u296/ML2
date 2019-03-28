@@ -1,4 +1,4 @@
-#include "HiddenCell.h"
+#include "HiddenCell.cuh"
 
 namespace ML2
 {

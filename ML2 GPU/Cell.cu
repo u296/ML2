@@ -1,5 +1,5 @@
 #include <numeric>
-#include "Cell.h"
+#include "Cell.cuh"
 
 namespace ML2
 {

@@ -1,4 +1,4 @@
-#include "OutputCell.h"
+#include "OutputCell.cuh"
 
 namespace ML2
 {
