@@ -6,6 +6,10 @@
 
 namespace ML2
 {
+	namespace Trainers	// Forward declaration - required for friendship to work
+	{
+		class BackpropagationTrainer;
+	}
 	namespace Bases
 	{
 		class Model
@@ -16,7 +20,7 @@ namespace ML2
 
 			virtual std::vector<double> Evaluate();
 		protected:
-			friend class Trainer;
+			friend class ML2::Trainers::BackpropagationTrainer;
 
 			std::vector<ML2::Bases::Cell *> m_inputLayer;
 			std::vector<std::vector<ML2::Bases::Cell *>> m_hiddenLayers;

@@ -10,6 +10,7 @@ namespace ML2
 		}
 		void BackpropagationTrainer::Run()
 		{
+			
 		}
 	}
 }

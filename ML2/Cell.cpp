@@ -5,21 +5,19 @@ namespace ML2
 {
 	namespace Bases
 	{
-		double Cell::GetValue()	// Could be parallellized
+		double Cell::GetOutput()	// Could be parallellized
 		{
-			std::vector<double> inputValues;
+			return m_activationFunction(GetSumWeightedInputs());
+		}
 
-			inputValues.reserve(m_inputCells.size());
-
-			for (int i = 0; i < m_inputCells.size(); i++)
-				inputValues.emplace_back(m_inputCells[i]->GetValue() * m_weights[i]);
-
+		double Cell::GetSumWeightedInputs()
+		{
 			double sum = 0;
 
-			for (const auto & e : inputValues)
-				sum += e;
+			for (int i = 0; i < m_inputCells.size(); i++)
+				sum += m_inputCells[i]->GetOutput() * m_weights[i];
 
-			return m_activationFunction(sum);
+			return sum;
 		}
 
 		double & Cell::operator[](const int index)

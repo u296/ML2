@@ -47,7 +47,7 @@ namespace ML2
 
 			evaluations.reserve(m_outputLayer.size());
 			for (auto & outputCell : m_outputLayer)
-				evaluations.push_back(outputCell->GetValue());
+				evaluations.push_back(outputCell->GetOutput());
 
 			return evaluations;
 		}

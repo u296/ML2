@@ -14,7 +14,13 @@ namespace ML2
 			// Inherit destructor
 
 			virtual void Run() override;
+
+			void test()
+			{
+				m_model;
+			}
 		protected:
+			double m_learningRate;
 		};
 	}
 }

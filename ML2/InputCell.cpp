@@ -16,7 +16,7 @@ namespace ML2
 
 		}
 
-		double InputCell::GetValue()
+		double InputCell::GetOutput()
 		{
 			return *m_inputVariable;
 		}

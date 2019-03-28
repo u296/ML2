@@ -12,7 +12,7 @@ namespace ML2
 			InputCell(double * inputVariable);
 			~InputCell();
 
-			virtual double GetValue() override;
+			virtual double GetOutput() override;
 		protected:
 			double * m_inputVariable;
 		};

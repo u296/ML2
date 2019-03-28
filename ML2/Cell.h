@@ -10,7 +10,8 @@ namespace ML2
 			Cell();
 			virtual ~Cell();
 
-			virtual double GetValue();
+			virtual double GetOutput();
+			virtual double GetSumWeightedInputs();
 			virtual double & operator[](const int index);
 		protected:
 			std::vector<Cell *> m_inputCells;
