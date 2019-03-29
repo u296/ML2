@@ -41,6 +41,13 @@ namespace ML2
 
 		}
 
+		void Model::SetInputVariables(std::vector<double*> inputVariables)
+		{
+
+			for (int i = 0; i < m_inputLayer.size(); i++)
+				static_cast<ML2::Cells::InputCell *>(m_inputLayer[i])->Attach(inputVariables[i]);
+		}
+
 		std::vector<double> Model::Evaluate()
 		{
 			std::vector<double> evaluations;

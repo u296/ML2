@@ -8,7 +8,7 @@ namespace ML2
 		class HiddenCell : public ML2::Bases::Cell
 		{
 		public:
-			HiddenCell(std::vector<ML2::Bases::Cell *> inputCells, std::vector<double> weights, double(*activationFunction)(double));
+			HiddenCell(std::vector<ML2::Bases::Cell *> inputCells, std::vector<double> weights, double bias, double(*activationFunction)(double));
 		};
 	}
 }

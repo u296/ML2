@@ -13,14 +13,16 @@ namespace ML2
 			virtual ~Trainer();
 
 			virtual void Attach(Model * model);
-			virtual void Run();
+			virtual void Run(int timesToTrain);
 		protected:
 			Model * m_model;
 
-			std::vector<std::vector<double>> *	m_trainingData;
-			std::vector<double> *				m_trainingAnwsers;
-			std::vector<std::vector<double>> *	m_testingData;
-			std::vector<double> *				m_testingAnwsers;
+			std::vector<std::vector<double *>>	m_trainingData;
+			std::vector<std::vector<double>>	m_trainingAnwsers;
+			std::vector<std::vector<double *>>	m_testingData;
+			std::vector<std::vector<double>>    m_testingAnwsers;
+
+			int m_currentTrainingDataIndex;
 		};
 	}
 }

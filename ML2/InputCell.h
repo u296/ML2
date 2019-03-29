@@ -13,6 +13,8 @@ namespace ML2
 			~InputCell();
 
 			virtual double GetOutput() override;
+
+			virtual void Attach(double * inputVariable);
 		protected:
 			double * m_inputVariable;
 		};

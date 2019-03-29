@@ -11,6 +11,8 @@
     <ClCompile Include="OutputCell.cpp" />
     <ClCompile Include="Trainer.cpp" />
     <ClCompile Include="Model.cpp" />
+    <ClCompile Include="CostFunctions.cpp" />
+    <ClCompile Include="HelperUtilities.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ActivationFunctions.h" />
@@ -23,5 +25,7 @@
     <ClInclude Include="Model.h" />
     <ClInclude Include="OutputCell.h" />
     <ClInclude Include="Trainer.h" />
+    <ClInclude Include="CostFunctions.h" />
+    <ClInclude Include="HelperUtilities.h" />
   </ItemGroup>
 </Project>

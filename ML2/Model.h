@@ -18,6 +18,7 @@ namespace ML2
 			Model();
 			virtual ~Model();
 
+			virtual void SetInputVariables(std::vector<double *> inputVariables);
 			virtual std::vector<double> Evaluate();
 		protected:
 			friend class ML2::Trainers::BackpropagationTrainer;

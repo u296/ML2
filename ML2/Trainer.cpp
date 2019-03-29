@@ -18,7 +18,7 @@ namespace ML2
 			m_model = model;
 		}
 
-		void Trainer::Run()
+		void Trainer::Run(int timesToTrain)
 		{
 		}
 	}

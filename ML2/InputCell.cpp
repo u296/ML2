@@ -20,5 +20,9 @@ namespace ML2
 		{
 			return *m_inputVariable;
 		}
+		void InputCell::Attach(double * inputVariable)
+		{
+			m_inputVariable = inputVariable;
+		}
 	}
 }

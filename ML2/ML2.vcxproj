@@ -118,7 +118,9 @@
     <ClCompile Include="ActivationFunctions.cpp" />
     <ClCompile Include="BackpropagationTrainer.cpp" />
     <ClCompile Include="Cell.cpp" />
+    <ClCompile Include="CostFunctions.cpp" />
     <ClCompile Include="FeedForwardModel.cpp" />
+    <ClCompile Include="HelperUtilities.cpp" />
     <ClCompile Include="HiddenCell.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="InputCell.cpp" />
@@ -130,7 +132,9 @@
     <ClInclude Include="ActivationFunctions.h" />
     <ClInclude Include="BackpropagationTrainer.h" />
     <ClInclude Include="Cell.h" />
+    <ClInclude Include="CostFunctions.h" />
     <ClInclude Include="FeedForwardModel.h" />
+    <ClInclude Include="HelperUtilities.h" />
     <ClInclude Include="HiddenCell.h" />
     <ClInclude Include="ML2.h" />
     <ClInclude Include="Model.h" />

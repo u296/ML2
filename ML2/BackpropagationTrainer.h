@@ -13,7 +13,7 @@ namespace ML2
 			BackpropagationTrainer(ML2::Bases::Model * model = nullptr);
 			// Inherit destructor
 
-			virtual void Run() override;
+			virtual void Run(int timesToRun) override;
 
 			void test()
 			{
