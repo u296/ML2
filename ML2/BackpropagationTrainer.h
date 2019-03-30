@@ -2,6 +2,7 @@
 
 #include "Model.h"
 #include "Trainer.h"
+#include "CostFunctions.h"
 
 namespace ML2
 {
@@ -10,7 +11,7 @@ namespace ML2
 		class BackpropagationTrainer : public ML2::Bases::Trainer
 		{
 		public:
-			BackpropagationTrainer(ML2::Bases::Model * model);
+			BackpropagationTrainer(ML2::Bases::Model * model, ML2::Bases::CostFunction * costFunction);
 			// Inherit destructor
 
 			virtual void Run(int timesToRun) override;
@@ -21,6 +22,8 @@ namespace ML2
 
 			std::vector<ML2::Bases::Cell *> m_modelCells;
 			bool m_cellsAreOrganized;
+
+			ML2::Bases::CostFunction * m_costFunction;
 		};
 	}
 }

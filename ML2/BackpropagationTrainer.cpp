@@ -1,5 +1,4 @@
 #include "BackpropagationTrainer.h"
-#include "CostFunctions.h"
 #include "HelperUtilities.h"
 #include "Cell.h"
 
@@ -7,10 +6,14 @@ namespace ML2
 {
 	namespace Trainers
 	{
-		BackpropagationTrainer::BackpropagationTrainer(ML2::Bases::Model * model)
+		BackpropagationTrainer::BackpropagationTrainer(ML2::Bases::Model * model, ML2::Bases::CostFunction * costFunction)
 		{
 			Attach(model);
+			m_costFunction = costFunction;
 		}
+
+
+
 		void BackpropagationTrainer::Run(int timesToRun)
 		{
 			
@@ -22,12 +25,29 @@ namespace ML2
 				std::vector<double> realOutput = m_model->Evaluate();
 				std::vector<double> expectedOutput = m_trainingAnwsers[m_currentTrainingDataIndex];
 
-				double modelCost = ML2::CostFunctions::MeanSquaredError(realOutput, expectedOutput);	//	Cost of the entire model
+				ResetErrors();	// Reset the errors of all the cells
+
+				double modelCost = m_costFunction->operator()(realOutput, expectedOutput);	//	Cost of the entire model
 
 				for (int i = 0; i < m_model->m_outputLayer.size(); i++)	// Set error for output cells
-					m_model->m_outputLayer[i]->GetError() = ML2::CostFunctions::MeanSquaredError(realOutput[i], expectedOutput[i]);
+					m_model->m_outputLayer[i]->GetError() = m_costFunction->operator()(realOutput[i], expectedOutput[i]);
 
+				for (int i = 0; i < m_modelCells.size(); i++)
+				{
+					ML2::Bases::Cell * cell = m_modelCells[i];
 
+					for (int j = 0; j < cell->GetInputCells().size(); j++)	// For every cell connected to the input of this cell
+						cell->GetInputCells()[j]->GetError() += (cell->GetWeights[j] / ML2::HelperUtilities::Sum(cell->GetWeights())) * cell->GetError();
+						/* 
+						add to that cells error ( the weight between that cell and this cell divided by the sum of all the weights leading into this cell)
+						times the error of this cell
+
+						*/
+					
+					// Magic calculus bullshit
+					
+					
+				}
 				
 
 
@@ -37,6 +57,9 @@ namespace ML2
 				m_currentTrainingDataIndex++;
 			}
 		}
+
+
+
 		void BackpropagationTrainer::OrganizeCells()	// Organize and store pointers to cells of the model in the member m_modelCells
 		{
 			int modelLayerCount = 1 + m_model->m_hiddenLayers.size(); // Total amount of layers in the model (except input layer)
@@ -67,15 +90,24 @@ namespace ML2
 				{
 					m_modelCells.push_back(	// Push back cells
 						i == modelLayerCount - 1 ?	// If were on the last loop (indicating output layer)
-						m_model->m_outputLayer[j] :	// Push back output layer cell j
-						m_model->m_hiddenLayers[i][j]	// Push back hidden layer i cell j
+						m_model->m_outputLayer[j] :	// Push back cell j of output layer
+						m_model->m_hiddenLayers[i][j]	// Push back cell j of hidden layer i
 					);
 				}
 			}
+
+			m_cellsAreOrganized = true;
 		}
+
+
+
 		void BackpropagationTrainer::ResetErrors()
 		{
+			if (!m_cellsAreOrganized)
+				OrganizeCells();
 
+			for (int i = 0; i < m_modelCells.size(); i++)
+				m_modelCells[i]->GetError() = 0;
 		}
 	}
 }

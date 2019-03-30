@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include "ActivationFunctions.h"
 namespace ML2
 {
 	namespace Bases
@@ -17,11 +18,12 @@ namespace ML2
 			virtual std::vector<double> & GetWeights();
 			virtual double & GetBias();
 			virtual double & GetError();
+			virtual ML2::Bases::ActivationFunction * GetActivationFunction();
 		protected:
 			std::vector<Cell *> m_inputCells;
 			std::vector<double> m_weights;
 			double m_bias;
-			double(*m_activationFunction)(double);
+			ML2::Bases::ActivationFunction * m_activationFunction;
 			double m_error;
 		};
 	}

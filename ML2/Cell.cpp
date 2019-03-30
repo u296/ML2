@@ -7,7 +7,7 @@ namespace ML2
 	{
 		double Cell::GetOutput()
 		{
-			return m_activationFunction(GetOutputInput());
+			return m_activationFunction->operator()(GetOutputInput());
 		}
 
 		double Cell::GetOutputInput()
@@ -43,6 +43,11 @@ namespace ML2
 		double & Cell::GetError()
 		{
 			return m_error;
+		}
+
+		ML2::Bases::ActivationFunction * Cell::GetActivationFunction()
+		{
+			return m_activationFunction;
 		}
 
 		Cell::Cell()
