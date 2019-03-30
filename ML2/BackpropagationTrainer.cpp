@@ -13,34 +13,7 @@ namespace ML2
 		}
 		void BackpropagationTrainer::Run(int timesToRun)
 		{
-			int networkLayerCount = 1 + m_model->m_hiddenLayers.size(); // Total amount of layers in the network
-
-			std::vector<int> layerCellCounts(networkLayerCount);	// Amount of cells in every layer
-
-			for (int i = 0; i < networkLayerCount; i++)
-			{
-				if (i == networkLayerCount - 1)
-					layerCellCounts[i] += m_model->m_outputLayer.size();
-				else
-					layerCellCounts[i] += m_model->m_hiddenLayers[i].size();
-			}
-
-
-			std::vector<std::vector<ML2::Bases::Cell *>> networkCells(networkLayerCount);	// All the cells in all the layers in the model
-
-			for (int i = 0; i < networkLayerCount; i++)
-			{
-				networkCells.emplace_back();
-
-				networkCells[i].reserve(layerCellCounts[i]);
-				for (int j = 0; j < layerCellCounts[i]; j++)
-				{
-					if (i == networkLayerCount - 1)
-						networkCells[i].push_back(m_model->m_outputLayer[j]);
-					else
-						networkCells[i].push_back(m_model->m_hiddenLayers[i][j]);
-				}
-			}
+			
 
 			for (int trainingIteration = 0; trainingIteration < timesToRun; trainingIteration++)
 			{
@@ -49,28 +22,13 @@ namespace ML2
 				std::vector<double> realOutput = m_model->Evaluate();
 				std::vector<double> expectedOutput = m_trainingAnwsers[m_currentTrainingDataIndex];
 
-				double networkCost = ML2::CostFunctions::MeanSquaredError(realOutput, expectedOutput);	//	Cost of the entire network
+				double modelCost = ML2::CostFunctions::MeanSquaredError(realOutput, expectedOutput);	//	Cost of the entire model
 
 				for (int i = 0; i < m_model->m_outputLayer.size(); i++)	// Set error for output cells
 					m_model->m_outputLayer[i]->GetError() = ML2::CostFunctions::MeanSquaredError(realOutput[i], expectedOutput[i]);
 
 
-				for (int layerCounter = 0; layerCounter < networkLayerCount; layerCounter++)
-				{
-					for (int cellCounter = 0; cellCounter < layerCellCounts[layerCounter]; cellCounter++)
-					{
-						ML2::Bases::Cell * cell = networkCells[layerCounter][cellCounter];
-
-						for (int i = 0; i < cell->GetInputCells().size(); i++)	// Set error for inputs to current cell
-						{
-							ML2::Bases::Cell * inputCell = cell->GetInputCells()[i];
-
-							double weightSum = ML2::HelperUtilities::Sum(cell->GetWeights());
-
-							inputCell->GetError() += cell->GetError() * (cell->GetWeights()[i] / weightSum);
-						}
-					}
-				}
+				
 
 
 
@@ -78,6 +36,46 @@ namespace ML2
 
 				m_currentTrainingDataIndex++;
 			}
+		}
+		void BackpropagationTrainer::OrganizeCells()	// Organize and store pointers to cells of the model in the member m_modelCells
+		{
+			int modelLayerCount = 1 + m_model->m_hiddenLayers.size(); // Total amount of layers in the model (except input layer)
+
+			int modelCellCount = 0;	// Total amount of cells in the model (excluding inputs)
+
+			std::vector<int> layerCellCounts(modelLayerCount);	// Amount of cells in every layer
+
+			for (int i = 0; i < modelLayerCount; i++)	// For every layer
+			{
+				modelCellCount +=	// Add to the complete cellcount
+					i == modelLayerCount - 1 ?	// If were on the last loop (indicating output layer)
+					m_model->m_outputLayer.size() :	// Add the size of the output layer
+					m_model->m_hiddenLayers[i].size();	// Else: add the size of hiddenlayer "i"
+
+				layerCellCounts.push_back(	// Push to layercellcounts
+					i == modelLayerCount - 1 ?	// If were on the last loop (indicating output layer)
+					m_model->m_outputLayer.size() :	// Push the size of the output layer
+					m_model->m_hiddenLayers[i].size()	// Else: push the size of hiddenlayer "i"
+				);
+			}
+
+
+			m_modelCells.reserve(modelCellCount);	// Reserve enough memory to store all the cells of the model locally
+			for (int i = 0; i < modelLayerCount; i++)	// For every layer in the model (except inputs)
+			{
+				for (int j = 0; j < layerCellCounts[i]; j++)
+				{
+					m_modelCells.push_back(	// Push back cells
+						i == modelLayerCount - 1 ?	// If were on the last loop (indicating output layer)
+						m_model->m_outputLayer[j] :	// Push back output layer cell j
+						m_model->m_hiddenLayers[i][j]	// Push back hidden layer i cell j
+					);
+				}
+			}
+		}
+		void BackpropagationTrainer::ResetErrors()
+		{
+
 		}
 	}
 }

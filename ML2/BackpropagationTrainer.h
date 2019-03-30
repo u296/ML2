@@ -10,17 +10,17 @@ namespace ML2
 		class BackpropagationTrainer : public ML2::Bases::Trainer
 		{
 		public:
-			BackpropagationTrainer(ML2::Bases::Model * model = nullptr);
+			BackpropagationTrainer(ML2::Bases::Model * model);
 			// Inherit destructor
 
 			virtual void Run(int timesToRun) override;
-
-			void test()
-			{
-				m_model;
-			}
+			
 		protected:
-			double m_learningRate;
+			virtual void OrganizeCells();
+			virtual void ResetErrors();
+
+			std::vector<ML2::Bases::Cell *> m_modelCells;
+			bool m_cellsAreOrganized;
 		};
 	}
 }
