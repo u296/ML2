@@ -7,12 +7,12 @@ namespace ML2
 {
 	namespace Models
 	{
-		ML2::Models::FeedForwardModel::FeedForwardModel(std::vector<double *> inputVariables, std::vector<int> modelShape, std::vector<double(*)(double)> activationFunctions)
+		ML2::Models::FeedForwardModel::FeedForwardModel(std::vector<double *> inputVariables, std::vector<int> modelShape, std::vector<ML2::Bases::ActivationFunction *> activationFunctions)
 		{
 			Initialize(inputVariables, modelShape, activationFunctions);
 		}
 
-		void ML2::Models::FeedForwardModel::Initialize(std::vector<double *> inputVariables, std::vector<int> modelShape, std::vector<double(*)(double)> activationFunctions)
+		void ML2::Models::FeedForwardModel::Initialize(std::vector<double *> inputVariables, std::vector<int> modelShape, std::vector<ML2::Bases::ActivationFunction *> activationFunctions)
 		{
 			// Populate input layer
 			m_inputLayer.reserve(modelShape[0]);	// Reserve enough memory in input layer for all the cells
@@ -32,6 +32,7 @@ namespace ML2
 				m_hiddenLayers[0].push_back(new ML2::Cells::HiddenCell(	// Add hidden cells to first hidden layer
 					m_inputLayer,	// Bind input cells to the input layer
 					std::vector<double>(m_inputLayer.size(), 1.0),	// Set all weights to 1.0
+					0.0,	// Set bias to 0.0
 					activationFunctions[0]	// Set activation function to activation function of the layer
 				));	// Create first hidden layer
 
@@ -42,6 +43,7 @@ namespace ML2
 					m_hiddenLayers[i].push_back(new ML2::Cells::HiddenCell(	// Add hidden cells to hidden layers (except for the first layer)
 						m_hiddenLayers[i - 1],	// Bind input cells to previous layer
 						std::vector<double>(m_hiddenLayers[i - 1].size(), 1.0),	// Set all weights to 1.0
+						0.0,	// Set bias to 0.0
 						activationFunctions[i]	// Set activation function to activation function of the layer
 					));
 			}
@@ -53,6 +55,7 @@ namespace ML2
 				m_outputLayer.push_back(new ML2::Cells::OutputCell(	// Add output cells to the output layer
 					m_hiddenLayers.back(),	// Bind input cells to last layer in hidden layers
 					std::vector<double>(m_hiddenLayers.back().size(), 1.0),	// Set all weights to 1.0
+					0.0,	// Set bias to 0.0
 					activationFunctions.back()	// Set activation function to last of activation functions
 				));
 

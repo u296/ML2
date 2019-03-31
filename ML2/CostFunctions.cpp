@@ -7,22 +7,22 @@ namespace ML2
 	{
 		double CostFunction::operator()(std::vector<double> realOutput, std::vector<double> expectedOutput)
 		{
-
+			return 0;
 		}
 
 		double CostFunction::operator()(double realOutput, double expectedOutput)
 		{
-
+			return 0;
 		}
 
 		double CostFunction::D_cost_realOutput(double realOutput, double expectedOutput)
 		{
-
+			return 0;
 		}
 
 		double CostFunction::GetExpectedOutput(double cost, double realOutput)
 		{
-
+			return 0;
 		}
 	}
 }
@@ -50,14 +50,5 @@ double MeanSquaredError::D_cost_realOutput(double realOutput, double expectedOut
 double MeanSquaredError::GetExpectedOutput(double cost, double realOutput)
 {
 	return sqrt(cost) + realOutput;
-}
-
-
-namespace ML2
-{
-	namespace CostFunctions
-	{
-		MeanSquaredError meanSquaredError;
-	}
 }
 

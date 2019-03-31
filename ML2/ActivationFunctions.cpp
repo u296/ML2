@@ -63,9 +63,6 @@ namespace ML2
 {
 	namespace ActivationFunctions
 	{
-		Identity identity;
-		Binary binary;
-		Sigmoid sigmoid;
-		SoftSign softsign;
+		
 	}
 }

@@ -36,7 +36,7 @@ namespace ML2
 			m_inputLayer.clear();
 		}
 
-		void Model::Initialize(std::vector<double *> inputVariables, std::vector<int> modelShape, std::vector<double(*)(double)> activationFunctions)
+		void Model::Initialize(std::vector<double *> inputVariables, std::vector<int> modelShape, std::vector<ML2::Bases::ActivationFunction *> activationFunctions)
 		{
 
 		}

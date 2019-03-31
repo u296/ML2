@@ -27,7 +27,7 @@ namespace ML2
 			std::vector<std::vector<ML2::Bases::Cell *>> m_hiddenLayers;
 			std::vector<ML2::Bases::Cell *> m_outputLayer;
 
-			virtual void Initialize(std::vector<double *> inputVariables, std::vector<int> modelShape, std::vector<double(*)(double)> activationFunctions);
+			virtual void Initialize(std::vector<double *> inputVariables, std::vector<int> modelShape, std::vector<ML2::Bases::ActivationFunction *> activationFunctions);
 		};
 	}
 }

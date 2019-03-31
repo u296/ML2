@@ -8,3 +8,5 @@
 #include "FeedForwardModel.h"
 #include "Trainer.h"
 #include "ActivationFunctions.h"
+#include "CostFunctions.h"
+#include "BackpropagationTrainer.h"

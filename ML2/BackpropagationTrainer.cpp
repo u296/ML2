@@ -6,10 +6,16 @@ namespace ML2
 {
 	namespace Trainers
 	{
-		BackpropagationTrainer::BackpropagationTrainer(ML2::Bases::Model * model, ML2::Bases::CostFunction * costFunction)
+		BackpropagationTrainer::BackpropagationTrainer(
+			ML2::Bases::Model * model,
+			ML2::Bases::CostFunction * costFunction,
+			double learningRate,
+			std::vector<std::vector<double *>> trainingData,
+			std::vector<std::vector<double>> trainingAnwsers
+		)
+			: m_costFunction(costFunction), m_learningRate(learningRate)
 		{
 			Attach(model);
-			m_costFunction = costFunction;
 		}
 
 
@@ -22,31 +28,50 @@ namespace ML2
 			{
 				m_model->SetInputVariables(m_trainingData[m_currentTrainingDataIndex]);
 
-				std::vector<double> realOutput = m_model->Evaluate();
-				std::vector<double> expectedOutput = m_trainingAnwsers[m_currentTrainingDataIndex];
+				std::vector<double> realModelOutput = m_model->Evaluate();
+				std::vector<double> expectedModelOutput = m_trainingAnwsers[m_currentTrainingDataIndex];
 
 				ResetErrors();	// Reset the errors of all the cells
 
-				double modelCost = m_costFunction->operator()(realOutput, expectedOutput);	//	Cost of the entire model
+				double modelCost = m_costFunction->operator()(realModelOutput, expectedModelOutput);	//	Cost of the entire model
 
 				for (int i = 0; i < m_model->m_outputLayer.size(); i++)	// Set error for output cells
-					m_model->m_outputLayer[i]->GetError() = m_costFunction->operator()(realOutput[i], expectedOutput[i]);
+					m_model->m_outputLayer[i]->GetError() = m_costFunction->D_cost_realOutput(realModelOutput[i], expectedModelOutput[i]);
 
-				for (int i = 0; i < m_modelCells.size(); i++)
+				for (int i = 0; i < m_modelCells.size(); i++)	// For every cell in the model
 				{
-					ML2::Bases::Cell * cell = m_modelCells[i];
+					ML2::Bases::Cell * cell = m_modelCells[i];	// Instanciate the current cell as cell
 
-					for (int j = 0; j < cell->GetInputCells().size(); j++)	// For every cell connected to the input of this cell
-						cell->GetInputCells()[j]->GetError() += (cell->GetWeights[j] / ML2::HelperUtilities::Sum(cell->GetWeights())) * cell->GetError();
-						/* 
-						add to that cells error ( the weight between that cell and this cell divided by the sum of all the weights leading into this cell)
-						times the error of this cell
-
-						*/
-					
 					// Magic calculus bullshit
-					
-					
+
+					double cellOutput = cell->GetOutput();
+					double cellOutputInput = cell->GetOutputInput();
+
+
+					double D_cellError_cellOutput = m_costFunction->D_cost_realOutput(cellOutput, m_costFunction->GetExpectedOutput(cell->GetError(), cellOutput));
+					double D_cellOutput_cellOutputInput = cell->GetActivationFunction()->derivative(cellOutputInput);
+					double D_cellOutputInput_cellBias = 1;
+
+					double D_cellError_cellBias = D_cellError_cellOutput * D_cellOutput_cellOutputInput * D_cellOutputInput_cellBias;	// Error of this cells bias
+
+					cell->GetBias() += -1 * m_learningRate * D_cellError_cellBias;
+					// Change bias by negative bias error times learning rate
+
+					for (int i = 0; i < cell->GetWeights().size(); i++)	// For every cell / weight leading into this cell
+					{
+						double D_cellOutputInput_cellWeightI = cell->GetInputCells()[i]->GetOutput();
+						double D_cellOutputInput_cellOutputI = cell->GetWeights()[i];
+
+
+						double D_cellError_cellWeightI = D_cellError_cellOutput * D_cellOutput_cellOutputInput * D_cellOutputInput_cellWeightI;	// Error of the weight
+						double D_cellError_cellOutputI = D_cellError_cellOutput * D_cellOutput_cellOutputInput * D_cellOutputInput_cellOutputI;	// Error of the other cell
+						
+						cell->GetInputCells()[i]->GetError() += D_cellError_cellOutputI;	// add the inputting cells error to the right place
+
+
+						cell->GetWeights()[i] += -1 * m_learningRate * D_cellError_cellWeightI;
+						// Change the current weight by negative error of weight times learning rate
+					}
 				}
 				
 

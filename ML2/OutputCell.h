@@ -8,7 +8,7 @@ namespace ML2
 		class OutputCell : public ML2::Bases::Cell
 		{
 		public:
-			OutputCell(std::vector<ML2::Bases::Cell *> inputCells, std::vector<double> weights, double bias, double(*ActivationFunction)(double));
+			OutputCell(std::vector<ML2::Bases::Cell *> inputCells, std::vector<double> weights, double bias, ML2::Bases::ActivationFunction * activationFunction);
 		};
 	}
 }
