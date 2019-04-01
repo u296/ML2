@@ -1,4 +1,3 @@
-#include <numeric>
 #include "Cell.h"
 
 namespace ML2

@@ -2,10 +2,12 @@
 #include <iostream>
 #include <vector>
 
-#include "ML2.h"
+#include "FeedForwardModel.h"
+#include "BackpropagationTrainer.h"
 
 int main()
 {
+	
 	
 	double da0 = 1;
 	double da1 = 0;
@@ -49,12 +51,12 @@ int main()
 	ML2::Models::FeedForwardModel * model = new ML2::Models::FeedForwardModel(
 		{nullptr},
 		{1, 1, 1},
-		{ML2::ActivationFunctions::sigmoid, ML2::ActivationFunctions::sigmoid}
+		{&ML2::ActivationFunctions::sigmoid, &ML2::ActivationFunctions::sigmoid}
 	);
 
 	ML2::Trainers::BackpropagationTrainer * trainer = new ML2::Trainers::BackpropagationTrainer(
 		model,
-		& ML2::CostFunctions::meanSquaredError,
+		&ML2::CostFunctions::meanSquaredError,
 		0.1,
 		trainingData,
 		trainingAnwsers
@@ -73,7 +75,7 @@ int main()
 	delete trainer;
 	delete model;
 	
-
+	
 	std::cout << "End of program. Press return to continue.";
 	std::cin.get();
 	return EXIT_SUCCESS;

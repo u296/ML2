@@ -12,20 +12,17 @@ namespace ML2
 			virtual double GetExpectedOutput(double cost, double realOutput);
 		};
 	}
-}
 
-static struct MeanSquaredError : ML2::Bases::CostFunction
-{
-	double operator()(std::vector<double> realOutput, std::vector<double> expectedOutput) override;
-	double operator()(double realOutput, double expectedOutput) override;
-	double D_cost_realOutput(double realOutput, double expectedOutput) override;
-	double GetExpectedOutput(double cost, double realOutput) override;
-};
-
-namespace ML2
-{
 	namespace CostFunctions
 	{
-		MeanSquaredError meanSquaredError;
+		struct MeanSquaredError_t : ML2::Bases::CostFunction
+		{
+			double operator()(std::vector<double> realOutput, std::vector<double> expectedOutput) override;
+			double operator()(double realOutput, double expectedOutput) override;
+			double D_cost_realOutput(double realOutput, double expectedOutput) override;
+			double GetExpectedOutput(double cost, double realOutput) override;
+		};
+
+		MeanSquaredError_t meanSquaredError;
 	}
 }

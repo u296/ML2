@@ -1,4 +1,3 @@
-#include <numeric>
 #include "InputCell.h"
 
 namespace ML2

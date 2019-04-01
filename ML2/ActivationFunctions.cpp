@@ -23,40 +23,46 @@ namespace ML2
 	}
 }
 
-double Identity::function(double x)
+namespace ML2
 {
-	return x;
-}
-double Identity::derivative(double x)
-{
-	return 1;
-}
+	namespace ActivationFunctions
+	{
+		double Identity_t::function(double x)
+		{
+			return x;
+		}
+		double Identity_t::derivative(double x)
+		{
+			return 1;
+		}
 
-double Binary::function(double x)
-{
-	return x >= 0 ? 1 : 0;
-}
-double Binary::derivative(double x)
-{
-	return x == 0 ? 1 : 0;
-}
+		double Binary_t::function(double x)
+		{
+			return x >= 0 ? 1 : 0;
+		}
+		double Binary_t::derivative(double x)
+		{
+			return x == 0 ? 1 : 0;
+		}
 
-double Sigmoid::function(double x)
-{
-	return 1 / (1 + exp(-x));
-}
-double Sigmoid::derivative(double x)
-{
-	return exp(x) / pow(exp(x) + 1, 2);
-}
+		double Sigmoid_t::function(double x)
+		{
+			return 1 / (1 + exp(-x));
+		}
+		double Sigmoid_t::derivative(double x)
+		{
+			return exp(x) / pow(exp(x) + 1, 2);
+		}
 
-double SoftSign::function(double x)
-{
-	return x / (1 + abs(x));
-}
-double SoftSign::derivative(double x)
-{
-	return 1 / pow(1 + abs(x), 2);
+		double SoftSign_t::function(double x)
+		{
+			return x / (1 + abs(x));
+		}
+		double SoftSign_t::derivative(double x)
+		{
+			return 1 / pow(1 + abs(x), 2);
+		}
+	}
 }
 
 namespace ML2

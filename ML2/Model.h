@@ -6,10 +6,11 @@
 
 namespace ML2
 {
-	namespace Trainers	// Forward declaration - required for friendship to work
+	namespace Trainers
 	{
 		class BackpropagationTrainer;
 	}
+
 	namespace Bases
 	{
 		class Model
