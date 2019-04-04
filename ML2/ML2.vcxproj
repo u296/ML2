@@ -114,34 +114,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="ActivationFunctions.cpp" />
-    <ClCompile Include="BackpropagationTrainer.cpp" />
-    <ClCompile Include="Cell.cpp" />
-    <ClCompile Include="CostFunctions.cpp" />
-    <ClCompile Include="FeedForwardModel.cpp" />
-    <ClCompile Include="HelperUtilities.cpp" />
-    <ClCompile Include="HiddenCell.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="InputCell.cpp" />
-    <ClCompile Include="Model.cpp" />
-    <ClCompile Include="OutputCell.cpp" />
-    <ClCompile Include="Trainer.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="ActivationFunctions.h" />
-    <ClInclude Include="BackpropagationTrainer.h" />
-    <ClInclude Include="Cell.h" />
-    <ClInclude Include="CostFunctions.h" />
-    <ClInclude Include="FeedForwardModel.h" />
-    <ClInclude Include="HelperUtilities.h" />
-    <ClInclude Include="HiddenCell.h" />
-    <ClInclude Include="ML2.h" />
-    <ClInclude Include="Model.h" />
-    <ClInclude Include="InputCell.h" />
-    <ClInclude Include="OutputCell.h" />
-    <ClInclude Include="Trainer.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
